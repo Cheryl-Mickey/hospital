@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 设置别名 -->
+    <typeAliases>
+        <typeAlias type="jmu.fxy.hospital.Entity.Register" alias="Register"/>
+        <typeAlias type="jmu.fxy.hospital.Entity.Doctor" alias="Doctor"/>
+        <typeAlias type="jmu.fxy.hospital.Entity.Patient" alias="Patient"/>
+        <typeAlias type="jmu.fxy.hospital.Entity.Hospital_detail" alias="Hospital_detail"/>
+    </typeAliases>
+
+    <!-- 配置插件 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+            <property name="reasonable" value="true"/>
+            <property name="supportMethodsArguments" value="true"/>
+            <property name="params" value="count=countSql"/>
+        </plugin>
+    </plugins>
+</configuration>

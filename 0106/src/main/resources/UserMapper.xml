@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jmu.fxy.hospital.Mapper.UserMapper">
+<!--    Doctor-->
+    <!-- 查询所有医生信息 -->
+    <select id="findAllDoctors" resultMap="DoctorResultMap">
+        SELECT * FROM doctor
+    </select>
+
+    <!-- 根据医生ID查询医生信息 -->
+    <select id="findDoctorById" resultMap="DoctorResultMap">
+        SELECT * FROM doctor WHERE doctor_id = #{doctorId}
+    </select>
+
+    <!-- 新增医生信息 -->
+    <insert id="insertDoctor" keyProperty="doctorId" useGeneratedKeys="true">
+        INSERT INTO doctor (doctor_id,department_id, doctor_name, doctor_sex, doctor_picture, doctor_skill)
+        VALUES (#{doctorId},#{departmentId}, #{doctorName}, #{doctorSex}, #{doctorPicture}, #{doctorSkill})
+    </insert>
+
+    <!-- 更新医生信息 -->
+    <update id="updateDoctor">
+        UPDATE doctor
+        SET department_id = #{departmentId},
+            doctor_name = #{doctorName},
+            doctor_sex = #{doctorSex},
+            doctor_picture = #{doctorPicture},
+            doctor_skill = #{doctorSkill}
+        WHERE doctor_id = #{doctorId}
+    </update>
+
+    <!-- 删除医生信息 -->
+    <delete id="deleteDoctorById">
+        DELETE FROM doctor WHERE doctor_id = #{doctorId}
+    </delete>
+
+    <!-- 查询医生总记录数 -->
+    <select id="countDoctors" resultType="int">
+        SELECT COUNT(*) FROM doctor
+    </select>
+
+    <!-- 根据偏移量和每页记录数查询对应页的医生信息 -->
+    <select id="getDoctorsByPage" resultMap="DoctorResultMap">
+        SELECT * FROM doctor
+            LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 结果映射 -->
+    <resultMap id="DoctorResultMap" type="jmu.fxy.hospital.Entity.Doctor">
+        <id property="doctorId" column="doctor_id" />
+        <result property="departmentId" column="department_id" />
+        <result property="doctorName" column="doctor_name" />
+        <result property="doctorSex" column="doctor_sex" />
+        <result property="doctorPicture" column="doctor_picture" />
+        <result property="doctorSkill" column="doctor_skill" />
+    </resultMap>
+
+
+<!--Register-->
+    <!-- 查询所有挂号信息 -->
+    <select id="findAllRegisters" resultMap="RegisterResultMap">
+        SELECT * FROM register
+    </select>
+
+    <!-- 根据病人ID查询挂号信息 -->
+    <select id="findRegisterByPatientId" resultMap="RegisterResultMap">
+        SELECT * FROM register WHERE patient_id = #{patient_id}
+    </select>
+
+    <!-- 新增挂号信息 -->
+    <insert id="insertRegister" useGeneratedKeys="true" keyProperty="patientId">
+        INSERT INTO register (patient_id, doctor_id, doctor_name, department_id, register_date, register_time, register_status)
+        VALUES (#{patient_id}, #{doctor_id}, #{doctor_name}, #{department_id}, #{register_date}, #{register_time}, #{register_status})
+    </insert>
+
+    <!-- 更新挂号信息 -->
+    <update id="updateRegister">
+        UPDATE register
+        SET doctor_id = #{doctor_id},
+            doctor_name = #{doctor_name},
+            department_id = #{department_id},
+            register_date = #{register_date},
+            register_time = #{register_time},
+            register_status = #{register_status}
+        WHERE patient_id = #{patient_id}
+    </update>
+    <update id="updateRegisterStatus">
+        UPDATE register
+        SET register_status = #{register_status}
+        WHERE patient_id = #{patient_id}
+        AND doctor_id = #{doctor_id}
+        AND register_status IN ('已预约', '已就诊')
+    </update>
+
+    <!-- 删除挂号信息 -->
+    <delete id="deleteRegister">
+        DELETE FROM register WHERE patient_id = #{patient_id} and doctor_id=#{doctor_id}
+    </delete>
+
+    <!-- 结果映射 -->
+    <resultMap id="RegisterResultMap" type="jmu.fxy.hospital.Entity.Register">
+        <id property="patient_id" column="patient_id" />
+        <result property="doctor_id" column="doctor_id" />
+        <result property="doctor_name" column="doctor_name" />
+        <result property="department_id" column="department_id" />
+        <result property="register_date" column="register_date" />
+        <result property="register_time" column="register_time" />
+        <result property="register_status" column="register_status" />
+    </resultMap>
+
+
+    <!-- 查询所有科室信息 -->
+    <select id="getAllHospitalDetails" resultMap="Hospital_detailResultMap">
+        SELECT * FROM hospital_detail
+    </select>
+
+    <!-- 根据科室ID查询科室信息 -->
+    <select id="getHospitalDetailById" resultMap="Hospital_detailResultMap">
+        SELECT * FROM hospital_detail
+        WHERE department_id = #{departmentId}
+    </select>
+
+    <!-- 新增科室信息 -->
+    <insert id="addHospitalDetail" keyProperty="department_id" useGeneratedKeys="true">
+        INSERT INTO hospital_detail (department_id,department, department_detail)
+        VALUES (#{department_id},#{department}, #{department_detail})
+    </insert>
+
+    <!-- 更新科室信息 -->
+    <update id="updateHospitalDetail">
+        UPDATE hospital_detail
+        SET department = #{department},
+            department_detail = #{department_detail}
+        WHERE department_id = #{department_id}
+    </update>
+
+    <!-- 删除科室信息 -->
+    <delete id="deleteHospitalDetail">
+        DELETE FROM hospital_detail
+        WHERE department_id = #{departmentId}
+    </delete>
+
+    <!-- 结果映射，用于将查询结果映射到Hospital_detail实体类对象 -->
+    <resultMap id="Hospital_detailResultMap" type="jmu.fxy.hospital.Entity.Hospital_detail">
+        <id property="department_id" column="department_id" />
+        <result property="department" column="department" />
+        <result property="department_detail" column="department_detail" />
+    </resultMap>
+</mapper>
