@@ -80,7 +80,6 @@
             doctor_name = #{doctor_name},
             department_id = #{department_id},
             register_date = #{register_date},
-            register_time = #{register_time},
             register_status = #{register_status}
         WHERE patient_id = #{patient_id}
     </update>
@@ -104,7 +103,6 @@
         <result property="doctor_name" column="doctor_name" />
         <result property="department_id" column="department_id" />
         <result property="register_date" column="register_date" />
-        <result property="register_time" column="register_time" />
         <result property="register_status" column="register_status" />
     </resultMap>
 

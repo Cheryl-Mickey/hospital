@@ -9,7 +9,6 @@ public class Register {
     private String doctor_name;
     private int department_id;
     private Date register_date;
-    private Time register_time;
     private String register_status;
 
     public int getPatient_id() {
@@ -52,14 +51,6 @@ public class Register {
         this.register_date = register_date;
     }
 
-    public Time getRegister_time() {
-        return register_time;
-    }
-
-    public void setRegister_time(Time register_time) {
-        this.register_time = register_time;
-    }
-
     public String getRegister_status() {
         return register_status;
     }
@@ -71,13 +62,12 @@ public class Register {
 
     }
     public Register( int patient_id, int doctor_id, String doctor_name, int department_id,
-                     Date register_date, Time register_time, String register_status){
+                     Date register_date,  String register_status){
         this.patient_id=patient_id;
         this.doctor_id=doctor_id;
         this.doctor_name=doctor_name;
         this.department_id=department_id;
         this.register_date=register_date;
-        this.register_time=register_time;
         this.register_status=register_status;
     }
 }

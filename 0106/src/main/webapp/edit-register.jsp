@@ -126,7 +126,6 @@
                 <th>医生姓名</th>
                 <th>科室编号</th>
                 <th>就诊日期</th>
-                <th>就诊时间</th>
                 <th>挂号状态</th>
                 <th>更新状态</th>
                 <th>操作</th>
@@ -141,7 +140,6 @@
                     <td>${register.doctor_name}</td>
                     <td>${register.department_id}</td>
                     <td>${register.register_date}</td>
-                    <td>${register.register_time}</td>
                     <td>${register.register_status}</td>
                     <td>
                         <select name="update_status" id="status-${register.patient_id}-${register.doctor_id}">

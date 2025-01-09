@@ -42,7 +42,6 @@ public class ManagerRegisterController {
             @RequestParam("doctor_name") String doctorName,
             @RequestParam("department_id") int departmentId,
             @RequestParam("register_date") String registerDate,
-            @RequestParam("register_time") String registerTime,
             @RequestParam("register_status") String registerStatus,
             Model model) {
         Register register = new Register();
@@ -51,7 +50,6 @@ public class ManagerRegisterController {
         register.setDoctor_name(doctorName);
         register.setDepartment_id(departmentId);
         register.setRegister_date(java.sql.Date.valueOf(registerDate));
-        register.setRegister_time(java.sql.Time.valueOf(registerTime));
         register.setRegister_status(registerStatus);
 
         try {
@@ -72,7 +70,6 @@ public class ManagerRegisterController {
             @RequestParam("doctor_name") String doctorName,
             @RequestParam("department_id") int departmentId,
             @RequestParam("register_date") String registerDate,
-            @RequestParam("register_time") String registerTime,
             @RequestParam("register_status") String registerStatus,
             Model model) {
         Register register = new Register();
@@ -81,7 +78,6 @@ public class ManagerRegisterController {
         register.setDoctor_name(doctorName);
         register.setDepartment_id(departmentId);
         register.setRegister_date(java.sql.Date.valueOf(registerDate));
-        register.setRegister_time(java.sql.Time.valueOf(registerTime));
         register.setRegister_status(registerStatus);
 
         try {
