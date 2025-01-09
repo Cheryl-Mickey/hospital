@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>编辑医生信息</title>
     <style>
-        /* 整体页面布局，可根据实际需求调整样式 */
+        /* 整体页面布局*/
         body {
             display: flex;
             min-height: 100vh;

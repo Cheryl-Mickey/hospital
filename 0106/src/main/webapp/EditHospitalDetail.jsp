@@ -155,7 +155,6 @@
 </div>
 
 <script>
-  // 这里可以根据实际需求添加一些前端验证逻辑或者交互效果等，比如表单提交前验证输入是否合法等，以下是简单示例
   const form = document.querySelector('form');
   form.addEventListener('submit', function (e) {
     // 简单验证科室名称是否为空，如果为空则阻止表单提交并提示用户
